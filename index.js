@@ -7,8 +7,9 @@ var express = require('express'),
 
 
 apiRouter.get('/npm', function(req, res){
-    var q = req.query.q
-    npm.commands.search(q, true, 1, function(data){
+    var q = req.query.q.split(',')
+    console.log('Search Query: %s', q)
+    npm.commands.search(q, false, function(err, data){
         res.send(data)
     })
 })
